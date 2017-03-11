@@ -1,0 +1,54 @@
+version: '2'
+#services:
+#  ngrok:
+#    image: fnichol/ngrok
+#    volumes_from:
+#      - app
+#    ports:
+#      - "8200:4040"
+#    depends_on:
+#      - nginx
+#      - php-fpm-7.1
+#      - app
+#    environment:
+#      HTTP_PORT: nginx:9071
+
+#  elk:
+#    build: docker/elk
+#    ports:
+#      - 8100:80
+#    volumes_from:
+#      - php-fpm-7.1
+#      - nginx
+#      - mysql
+#      - redis
+#      - rabbitmq
+
+#  selenium-chrome:
+#    image: selenium/standalone-chrome-debug
+#    ports:
+#      - 49338:4444
+#      - 5901:5900
+#    volumes_from:
+#      - app:rw
+#    depends_on:
+#      - nginx
+
+#  selenium-firefox:
+#    image: selenium/standalone-firefox-debug
+#    ports:
+#      - 49339:4444
+#      - 5902:5900
+#    volumes_from:
+#      - app:rw
+#    depends_on:
+#      - nginx
+
+#  php-cli-7.1:
+#    links:
+#        - mysql
+#        - mailhog
+#        - redis
+#        - rabbitmq
+#        - selenium-chrome
+#        - selenium-firefox

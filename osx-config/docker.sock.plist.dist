@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>docker.sock</string>
+
+    <!-- This file should be ~/Library/LaunchAgents/docker.sock.plist -->
+    <!-- Start with: launchctl load ~/Library/LaunchAgents/docker.sock.plist -->
+    <!-- Configure jetbrains with tcp://localhost:2375 -->
+
+    <key>OnDemand</key>
+    <false/>
+
+    <key>UserName</key>
+    <!-- Change the string below to your username -->
+    <string>aReasonableUserName</string>
+
+    <key>GroupName</key>
+    <!-- Change the string below to any arbitrary group name such as "Docker" -->
+    <string>aReasonableGroup</string>
+
+    <key>ProgramArguments</key>
+    <array>
+            <string>/usr/local/bin/socat</string>
+            <!-- Change the port - 2375 - if necessary. Otherwise just keep it as is -->
+            <string>TCP-LISTEN:2375,reuseaddr,fork,bind=localhost</string>
+            <string>UNIX-CONNECT:/var/run/docker.sock</string>
+    </array>
+</dict>
+</plist>
