@@ -167,7 +167,23 @@ So now you take the ip address you got, and put it into your `.env` for `HOST_IP
 
 PhpStorm integrates docker api by using a port, but, from recenlty docker only allows api interaction via sock.
 
-### Prerequisites
+### PHPStorm 2017.01 and newer
+
+PHPStorm now allows direct referencing of sockets.
+To configure PhpStorm you will need to do the following:
+
+1. open preferences
+2. under `Build, Execution, Deployment` select `Docker`.
+3. if there is no Docker instances defined, create one by clicking on the `+` icon, and give it a name
+4. In Api URL enter `unix:///var/run/docker.sock`
+5. clear the certificates folder input
+6. set the docker compose executable to `/usr/local/bin/docker-compose` or wherever it is (you can find out by running `which docker-compose`)
+7. make sure `Import credentials from docker machine` is checked off
+8. Click OK
+
+### PHPStorm older than 2017.01
+
+#### Prerequisites
 
 To solve this, you will need to install socat.
 Installation instructions for it on linux differ by your particular flavor.
@@ -194,7 +210,7 @@ On OSX you need to do the following steps:
 
 And now on every restart the socat will be automatically setup.
 
-### PhpStorm setup
+#### PhpStorm setup
 
 To configure PhpStorm you will need to do the following:
 
