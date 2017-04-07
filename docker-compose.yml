@@ -24,6 +24,8 @@ services:
     volumes:
       - "${DATA_PATH}/redis:/data"
     command: redis-server --appendonly yes
+    ports:
+      - 6379:6379
 
   rabbitmq:
     image: rabbitmq:3.6-management
