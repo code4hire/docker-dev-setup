@@ -32,7 +32,7 @@ call_docker_compose() {
 }
 
 call_docker_compose_run() {
-    docker-compose run "$@"
+    docker-compose run --rm "$@"
 }
 
 call_docker_compose_exec() {
