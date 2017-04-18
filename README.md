@@ -274,6 +274,8 @@ Copy the `docker/.env.dist` to `.env` in your project root.
 Pay special attention to `DATA_PATH`, `DOCKER_SYNC_LOCATION` and `COMPOSE_FILE` depending 
 if you are using docker-sync or not, and depending on your setup, the paths need to be adjusted.
 
+If you are not using docker-sync, make sure that `COMPOSE_FILE` has no reference to `docker-compose-dev.yml`
+
 If you are using `docker-sync`, you can start it in the terminal by executing
 
 ```bash
