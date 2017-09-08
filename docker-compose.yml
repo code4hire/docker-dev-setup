@@ -52,7 +52,7 @@ services:
   node:
     build:
       context: docker/node
-    working_dir: DESTINATION_PATH
+    working_dir: ${DESTINATION_PATH}
     links:
       - redis
       - rabbitmq
@@ -78,7 +78,7 @@ services:
 
   php-cli-7.1:
     image: code4hire/php:7.1-cli
-    working_dir: DESTINATION_PATH
+    working_dir: ${DESTINATION_PATH}
     links:
         - mysql
         - mailhog
@@ -111,7 +111,7 @@ services:
 
   php-cli-7.0:
     image: code4hire/php:7.0-cli
-    working_dir: DESTINATION_PATH
+    working_dir: ${DESTINATION_PATH}
     links:
         - mysql
         - mailhog
@@ -144,7 +144,7 @@ services:
 
   php-cli-5.6:
     image: code4hire/php:5.6-cli
-    working_dir: DESTINATION_PATH
+    working_dir: ${DESTINATION_PATH}
     links:
         - mysql
         - mailhog
