@@ -52,8 +52,7 @@ services:
   node:
     build:
       context: docker/node
-      args:
-        - DESTINATION_PATH
+    working_dir: DESTINATION_PATH
     links:
       - redis
       - rabbitmq
@@ -62,20 +61,7 @@ services:
 
 # php 7.1
   php-fpm-7.1:
-    build: docker/php-fpm-7.1
-    links:
-        - mysql
-        - mailhog
-        - redis
-        - rabbitmq
-    volumes:
-      - "${DATA_PATH}/logs/php-fpm/7.1/:/var/log/php-fpm"
-      - "${DATA_PATH}/logs/xdebug/7.1/:/var/log/xdebug"
-    volumes_from:
-      - app:rw
-
-  php-fpm-debug-7.1:
-    build: docker/php-fpm-debug-7.1
+    image: code4hire/php:7.1-fpm
     links:
         - mysql
         - mailhog
@@ -91,10 +77,8 @@ services:
       XDEBUG_CONFIG: "remote_connect_back=0 remote_autostart=0 remote_host=${HOST_IP} idekey=${IDEKEY} remote_port=9000"
 
   php-cli-7.1:
-    build:
-      context: docker/php-cli-7.1
-      args:
-        - DESTINATION_PATH
+    image: code4hire/php:7.1-cli
+    working_dir: DESTINATION_PATH
     links:
         - mysql
         - mailhog
@@ -110,20 +94,7 @@ services:
 
 # php 7.0
   php-fpm-7.0:
-    build: docker/php-fpm-7.0
-    links:
-        - mysql
-        - mailhog
-        - redis
-        - rabbitmq
-    volumes:
-      - "${DATA_PATH}/logs/php-fpm/7.0/:/var/log/php-fpm"
-      - "${DATA_PATH}/logs/xdebug/7.0/:/var/log/xdebug"
-    volumes_from:
-      - app:rw
-
-  php-fpm-debug-7.0:
-    build: docker/php-fpm-debug-7.0
+    image: code4hire/php:7.0-fpm
     links:
         - mysql
         - mailhog
@@ -139,10 +110,8 @@ services:
       XDEBUG_CONFIG: "remote_connect_back=0 remote_autostart=0 remote_host=${HOST_IP} idekey=docker-xdebug remote_port=9000"
 
   php-cli-7.0:
-    build:
-      context: docker/php-cli-7.0
-      args:
-        - DESTINATION_PATH
+    image: code4hire/php:7.0-cli
+    working_dir: DESTINATION_PATH
     links:
         - mysql
         - mailhog
@@ -158,20 +127,7 @@ services:
 
 # php 5.6
   php-fpm-5.6:
-    build: docker/php-fpm-5.6
-    links:
-        - mysql
-        - mailhog
-        - redis
-        - rabbitmq
-    volumes:
-      - "${DATA_PATH}/logs/php-fpm/5.6/:/var/log/php-fpm"
-      - "${DATA_PATH}/logs/xdebug/5.6/:/var/log/xdebug"
-    volumes_from:
-      - app:rw
-
-  php-fpm-debug-5.6:
-    build: docker/php-fpm-debug-5.6
+    image: code4hire/php:5.6-fpm
     links:
         - mysql
         - mailhog
@@ -187,10 +143,8 @@ services:
       XDEBUG_CONFIG: "remote_connect_back=0 remote_autostart=0 remote_host=${HOST_IP} idekey=docker-xdebug remote_port=9000"
 
   php-cli-5.6:
-    build:
-      context: docker/php-cli-5.6
-      args:
-        - DESTINATION_PATH
+    image: code4hire/php:5.6-cli
+    working_dir: DESTINATION_PATH
     links:
         - mysql
         - mailhog
@@ -211,24 +165,17 @@ services:
         - NGINX_PROJECT_ROOT
         - NGINX_ENTRY_POINT_FILE
         - NGINX_ALLOWED_FILES
-
     ports:
       - 8071:8071
-      - 9071:9071
       - 8070:8070
-      - 9070:9070
       - 8056:8056
-      - 9056:9056
     volumes:
       - "${DATA_PATH}/logs/nginx/:/var/log/nginx"
     volumes_from:
       - php-fpm-7.1
     links:
       - php-fpm-7.1
-      - php-fpm-debug-7.1
       - php-fpm-7.0
-      - php-fpm-debug-7.0
       - php-fpm-5.6
-      - php-fpm-debug-5.6
     depends_on:
       - app
