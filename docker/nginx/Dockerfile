@@ -10,12 +10,9 @@ RUN apk add --update nginx && rm -rf /var/cache/apk/*
 
 ADD ./nginx.conf /etc/nginx/nginx.conf
 
-ADD ./application-7.1.conf \
-    ./application-debug-7.1.conf \
-    ./application-7.0.conf \
-    ./application-debug-7.0.conf \
-    ./application-5.6.conf \
-    ./application-debug-5.6.conf \
+ADD ./application-dev-7.1.conf \
+    ./application-dev-7.0.conf \
+    ./application-dev-5.6.conf \
     /etc/nginx/conf.d/
 
 RUN /bin/sed -i "s@\${PROJECT_ROOT}@$NGINX_PROJECT_ROOT@" /etc/nginx/conf.d/application*.conf \
@@ -24,6 +21,6 @@ RUN /bin/sed -i "s@\${PROJECT_ROOT}@$NGINX_PROJECT_ROOT@" /etc/nginx/conf.d/appl
 
 RUN mkdir -p /var/log/nginx
 
-EXPOSE 8071 9071 8070 9070 8056 9056
+EXPOSE 8071 8070 8056
 
 CMD ["nginx"]
