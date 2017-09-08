@@ -5,10 +5,10 @@ version: "2"
 services:
   app:
     volumes:
-      - docker-sync-unison:${DESTINATION_PATH}:rw
+      - docker-sync:${DESTINATION_PATH}:nocache
 
 # that the important thing
 volumes:
-  docker-sync-unison:
+  docker-sync:
     external:
-      name: "${SYNC_NAME}-unison-sync"
+      name: "${SYNC_NAME}-sync"

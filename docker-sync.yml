@@ -4,10 +4,8 @@ options:
   verbose: true
 syncs:
   #IMPORTANT: ensure this name is unique and does not match your other application container name
-  ${SYNC_NAME}-unison-sync: # tip: add -sync and you keep consistent names as a convention
+  ${SYNC_NAME}-sync: # tip: add -sync and you keep consistent names as a convention
     src: '${APP_PATH}'
-    dest: '${DESTINATION_PATH}'
-    sync_strategy: 'unison'
     sync_excludes: ['.idea/', '.gitkeep', '.gitignore', '.git/', '.travis.yml', '.travis/', 'app/cache', 'var/cache', 'app/logs', 'var/logs', 'web/media/cache', 'Gemfile.lock', 'Gemfile', 'config.rb', '.sass-cache/', 'sass/', 'sass-cache/',]
 
     watch_excludes: ['.idea/', '.gitkeep', '.gitignore', '.git/', '.travis.yml', '.travis/', 'app/cache', 'var/cache', 'app/logs', 'var/logs', 'web/media/cache']
