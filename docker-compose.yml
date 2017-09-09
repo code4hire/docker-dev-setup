@@ -164,6 +164,7 @@ services:
         - "8056:8056"
         - "8070:8070"
         - "8071:8071"
+      # add your config files here
       volumes:
         - ./docker/nginx/dev-5.6.conf:/etc/nginx/conf.d/dev-5.6.conf
         - ./docker/nginx/dev-7.0.conf:/etc/nginx/conf.d/dev-7.0.conf
