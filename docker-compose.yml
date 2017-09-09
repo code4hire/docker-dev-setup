@@ -159,23 +159,21 @@ services:
       XDEBUG_CONFIG: "remote_connect_back=0 remote_autostart=0 remote_host=${HOST_IP} idekey=docker-xdebug remote_port=9000"
 
   nginx:
-    build:
-      context: docker/nginx
-      args:
-        - NGINX_PROJECT_ROOT
-        - NGINX_ENTRY_POINT_FILE
-        - NGINX_ALLOWED_FILES
-    ports:
-      - 8071:8071
-      - 8070:8070
-      - 8056:8056
-    volumes:
-      - "${DATA_PATH}/logs/nginx/:/var/log/nginx"
-    volumes_from:
-      - php-fpm-7.1
-    links:
-      - php-fpm-7.1
-      - php-fpm-7.0
-      - php-fpm-5.6
-    depends_on:
-      - app
+      image: nginx:latest
+      ports:
+        - "8056:8056"
+        - "8070:8070"
+        - "8071:8071"
+      volumes:
+        - ./docker/nginx/dev-5.6.conf:/etc/nginx/conf.d/dev-5.6.conf
+        - ./docker/nginx/dev-7.0.conf:/etc/nginx/conf.d/dev-7.0.conf
+        - ./docker/nginx/dev-7.1.conf:/etc/nginx/conf.d/dev-7.1.conf
+        - "${DATA_PATH}/logs/nginx/:/var/log/nginx"
+      volumes_from:
+        - php-fpm-7.1
+      links:
+        - php-fpm-7.1
+        - php-fpm-7.0
+        - php-fpm-5.6
+      depends_on:
+        - app
