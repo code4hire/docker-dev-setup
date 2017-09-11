@@ -14,7 +14,7 @@ version: '2'
 #      HTTP_PORT: nginx:9071
 
 #  elk:
-#    build: docker/elk
+#    image: willdurand/elk
 #    ports:
 #      - 8100:80
 #    volumes_from:
@@ -23,6 +23,10 @@ version: '2'
 #      - mysql
 #      - redis
 #      - rabbitmq
+#    volumes:
+#      - ./docker/elk/logstash:/etc/logstash
+#      - ./docker/elk/logstash/patterns:/opt/logstash/patterns
+#
 
 #  selenium-chrome:
 #    image: selenium/standalone-chrome-debug
