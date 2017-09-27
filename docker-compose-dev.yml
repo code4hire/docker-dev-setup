@@ -5,7 +5,7 @@ version: "2"
 services:
   app:
     volumes:
-      - docker-sync:${DESTINATION_PATH}:nocache
+      - docker-sync:${DESTINATION_PATH}:nocopy
 
 # that the important thing
 volumes:
