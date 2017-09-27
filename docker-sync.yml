@@ -12,3 +12,4 @@ syncs:
     sync_excludes_type: 'Name'
     watch_args: '-v' # make fswatch verbose
     sync_args: '-prefer newer -copyonconflict'
+    notify_terminal: true
