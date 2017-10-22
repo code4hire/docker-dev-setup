@@ -27,11 +27,9 @@ gem install docker-sync
 And then you continue with installing the rest of the prerequisites
 
 ```bash
-brew install fswatch
-
 brew install unison
-
-sudo pip install macfsevents
+brew tap eugenmayer/dockersync
+brew install eugenmayer/dockersync/unox
 ```
 
 ## Prerequisites for Linux
